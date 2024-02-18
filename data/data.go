@@ -3,12 +3,12 @@ package data
 import (
 	"sync"
 )
-
+// ID представляет структуру для хранения идентификатора и результата выражения.
 type ID struct {
 	Id     int
 	Result int
 }
-
+//Псевдо база данных.
 var Mutex = &sync.Mutex{}
 var ExpressionResultMap = make(map[string]ID)
 
