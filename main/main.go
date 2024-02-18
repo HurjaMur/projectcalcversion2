@@ -12,7 +12,7 @@ func main() {
 	expression := "2+2*2" // Введите ваше выражение
 	orch := orchestrator.NewOrchestrator(expression)
 	exp, _ := orch.ParseAndProcessExpression()
-	time.Sleep(10 * time.Second)                         // Введите сколько времени должно пройти до вычисления
-	res := data.ExpressionResultMap[fmt.Sprint(orch.ID)] // используйте fmt.Sprint для преобразования int в строку
-	fmt.Printf("\nВаше выражение: %s, Ответ на ваше выражение: %d", exp, res.Result)
+	time.Sleep(1 * time.Second) // Введите сколько времени должно пройти до вычисления
+	res := data.ExpressionResultMap[fmt.Sprint(expression)]
+	fmt.Println("Ваше выражение:", "Ответ на ваше выражение: ", exp, res)
 }
