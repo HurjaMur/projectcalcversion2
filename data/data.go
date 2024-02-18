@@ -3,17 +3,15 @@ package data
 import (
 	"sync"
 )
-// ID представляет структуру для хранения идентификатора и результата выражения.
-type ID struct {
-	Id     int
-	Result int
-}
-//Псевдо база данных.
-var Mutex = &sync.Mutex{}
-var ExpressionResultMap = make(map[string]ID)
 
-func SaveToDatabase(id int, expression string, result int) {
+// ID представляет структуру для хранения идентификатора и результата выражения.
+
+// Псевдо база данных.
+var Mutex = &sync.Mutex{}
+var ExpressionResultMap = make(map[string]int)
+
+func SaveToDatabase(expression string, result int) {
 	Mutex.Lock()
 	defer Mutex.Unlock()
-	ExpressionResultMap[expression] = ID{Id: id, Result: result}
+	ExpressionResultMap[expression] = result
 }
