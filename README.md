@@ -4,7 +4,7 @@
 Для запуска нужно добавить пакеты в (C:\Program Files\Go\src\"пакеты") возможно ваш Golang в VSCode лежит в другом месте, но у меня так.
 
 Или git clone https://github.com/HurjaMur/projectcalcversion2.git
-далее вводим go run main
+далее вводим go run main в терминал
 
 Вы можете изменить переменные, время, которые уже указаны в моем коде, если хотите.
 
