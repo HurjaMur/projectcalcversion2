@@ -6,6 +6,7 @@ import (
 	"strings"
 )
 
+// ProcessExpression обрабатывает математическое выражение, возвращая результат вычислений.
 func ProcessExpression(expression string) int {
 	expression = strings.ReplaceAll(expression, " ", "")
 
@@ -19,6 +20,7 @@ func ProcessExpression(expression string) int {
 	return result
 }
 
+// calculateExpression производит математические операции между числами и возвращает результат.
 func calculateExpression(numbers []string, ops []string) (int, error) {
 	result := 0
 	currentOperation := "+"
