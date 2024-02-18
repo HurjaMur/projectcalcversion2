@@ -14,5 +14,5 @@ func main() {
 	exp, _ := orch.ParseAndProcessExpression()
 	time.Sleep(1 * time.Second) // Введите сколько времени должно пройти до вычисления
 	res := data.ExpressionResultMap[fmt.Sprint(expression)]
-	fmt.Println("Ваше выражение:", "Ответ на ваше выражение: ", exp, res)
+	fmt.Print("Корректность вашего выражения,", "ответ на ваше выражение соотвественно ", exp, res)
 }
