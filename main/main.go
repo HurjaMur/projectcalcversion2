@@ -10,7 +10,7 @@ import (
 
 func main() {
 	expression := "2+2*2" // Введите ваше выражение
-	orch := orchestrator.NewOrchestrator(expression)
+	orch := orchestrator.NewOrchestrator(expression) //Добавляем наше выражение в оркестратор
 	exp, _ := orch.ParseAndProcessExpression()
 	time.Sleep(1 * time.Second) // Введите сколько времени должно пройти до вычисления
 	res := data.ExpressionResultMap[fmt.Sprint(expression)]
