@@ -10,6 +10,7 @@ import (
 var Mutex = &sync.Mutex{}
 var ExpressionResultMap = make(map[string]int)
 
+// Сохраняем в базу данных
 func SaveToDatabase(expression string, result int) {
 	Mutex.Lock()
 	defer Mutex.Unlock()
