@@ -1,51 +1,59 @@
 package agent
 
 import (
-	"regexp"
 	"strconv"
 	"strings"
 )
 
-// ProcessExpression обрабатывает математическое выражение, возвращая результат вычислений.
+// ProcessExpression вычисляет математическое выражение и возвращает результат
 func ProcessExpression(expression string) int {
-	expression = strings.ReplaceAll(expression, " ", "")
+	// Выделение чисел и операций из выражения
+	tokens := strings.FieldsFunc(expression, func(r rune) bool {
+		return r == '+' || r == '-' || r == '*' || r == '/'
+	})
 
-	operands := regexp.MustCompile(`\d+`)
-	operations := regexp.MustCompile(`[\+\-\*\/]`)
-	numbers := operands.FindAllString(expression, -1)
-	ops := operations.FindAllString(expression, -1)
+	nums := make([]int, 0)
+	operations := make([]string, 0)
 
-	result, _ := calculateExpression(numbers, ops)
+	for _, token := range tokens {
+		num, _ := strconv.Atoi(token)
+		nums = append(nums, num)
+	}
 
-	return result
-}
-
-// calculateExpression производит математические операции между числами и возвращает результат.
-func calculateExpression(numbers []string, ops []string) (int, error) {
-	result := 0
-	currentOperation := "+"
-
-	for i, num := range numbers {
-		parsedNum, err := strconv.Atoi(num)
-		if err != nil {
-			return 0, err
-		}
-
-		if currentOperation == "+" {
-			result += parsedNum
-		} else if currentOperation == "-" {
-			result -= parsedNum
-		} else if currentOperation == "*" {
-			result *= parsedNum
-		} else if currentOperation == "/" {
-			result /= parsedNum
-		}
-
-		// Установка операции для следующего числа, если есть
-		if i < len(ops) {
-			currentOperation = ops[i]
+	for _, c := range expression {
+		char := string(c)
+		if char == "+" || char == "-" || char == "*" || char == "/" {
+			operations = append(operations, char)
 		}
 	}
 
-	return result, nil
+	// Обработка операций с учетом приоритета
+	// Сначала умножение и деление
+	for i, op := range operations {
+		if op == "*" {
+			nums[i] *= nums[i+1]
+			nums = append(nums[:i+1], nums[i+2:]...)
+			operations = append(operations[:i], operations[i+1:]...)
+			i--
+		} else if op == "/" {
+			nums[i] /= nums[i+1]
+			nums = append(nums[:i+1], nums[i+2:]...)
+			operations = append(operations[:i], operations[i+1:]...)
+			i--
+		}
+	}
+
+	// Затем сложение и вычитание
+	result := nums[0]
+
+	for i, op := range operations {
+		switch op {
+		case "+":
+			result += nums[i+1]
+		case "-":
+			result -= nums[i+1]
+		}
+	}
+
+	return result
 }
