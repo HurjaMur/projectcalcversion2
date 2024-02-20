@@ -10,12 +10,15 @@ import (
 
 func main() {
 	var expression string
+	var timee int
 	fmt.Print("Введите ваше выражение")
-	x, _ := fmt.Scan(&expression)                    // Введите ваше выражение
+	x, _ := fmt.Scan(&expression) // Введите ваше выражение
+	fmt.Print("Введите время операции")
+	y, _ := fmt.Scan(&timee)                         // Введите время обработки операции
 	orch := orchestrator.NewOrchestrator(expression) //Добавляем наше выражение в оркестратор
 	exp, _ := orch.ParseAndProcessExpression()
-	time.Sleep(1 * time.Second) // Введите сколько времени должно пройти до вычисления
-	x++                         //Просто юзаем, чтобы не было ошибок в компиляторе
+	time.Sleep(time.Duration(timee) * time.Second) // Введите сколько времени должно пройти до вычисления
+	x += y                                         //Просто юзаем, чтобы не было ошибок в компиляторе
 	res := data.ExpressionResultMap[fmt.Sprint(expression)]
 	fmt.Printf("Корректность вашего выражения: %v, Ответ на ваше выражение: %v\n", exp, res)
 }
