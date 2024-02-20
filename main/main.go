@@ -9,10 +9,13 @@ import (
 )
 
 func main() {
-	expression := "2+2*2" // Введите ваше выражение
+	var expression string
+	fmt.Print("Введите ваше выражение")
+	x, _ := fmt.Scan(&expression)                    // Введите ваше выражение
 	orch := orchestrator.NewOrchestrator(expression) //Добавляем наше выражение в оркестратор
 	exp, _ := orch.ParseAndProcessExpression()
 	time.Sleep(1 * time.Second) // Введите сколько времени должно пройти до вычисления
+	x++                         //Просто юзаем, чтобы не было ошибок в компиляторе
 	res := data.ExpressionResultMap[fmt.Sprint(expression)]
 	fmt.Print("Корректность вашего выражения,", "ответ на ваше выражение соотвественно ", exp, res)
 }
