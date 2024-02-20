@@ -13,7 +13,7 @@ func main() {
 	var timee int
 	fmt.Print("Введите ваше выражение")
 	x, _ := fmt.Scan(&expression) // Введите ваше выражение
-	fmt.Print("Введите время операции")
+	fmt.Print("Введите время выполнения операции")
 	y, _ := fmt.Scan(&timee)                         // Введите время обработки операции
 	orch := orchestrator.NewOrchestrator(expression) //Добавляем наше выражение в оркестратор
 	exp, _ := orch.ParseAndProcessExpression()
