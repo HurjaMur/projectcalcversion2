@@ -3,6 +3,8 @@
 
 Для запуска нужно добавить пакеты в (C:\Program Files\Go\src\"пакеты") возможно ваш Golang в VSCode лежит в другом месте, но у меня так.
 
+далее go mod init
+
 Или git clone https://github.com/HurjaMur/projectcalcversion2.git
 далее вводим go run main в терминал и дальше по инструкции в самом коде.
 
