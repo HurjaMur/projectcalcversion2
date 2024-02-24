@@ -29,13 +29,13 @@ func ProcessExpression(expression string) int {
 
 	// Обработка операций с учетом приоритета
 	// Сначала умножение и деление
-	for i, op := range operations {
-		if op == "*" {
+	for i := 0; i < len(operations); i++ {
+		if operations[i] == "*" {
 			nums[i] *= nums[i+1]
 			nums = append(nums[:i+1], nums[i+2:]...)
 			operations = append(operations[:i], operations[i+1:]...)
 			i--
-		} else if op == "/" {
+		} else if operations[i] == "/" {
 			nums[i] /= nums[i+1]
 			nums = append(nums[:i+1], nums[i+2:]...)
 			operations = append(operations[:i], operations[i+1:]...)
