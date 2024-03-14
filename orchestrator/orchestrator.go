@@ -28,9 +28,6 @@ func isExpressionValid(expr string) bool {
 
 // Проверка нашего выражения на валидность
 func isValidExpression(expr string, index int) bool {
-	if index == len(expr) {
-		return true
-	}
 
 	if expr[index] >= '0' && expr[index] <= '9' { //Если выражение содержит цифры
 		return isValidExpression(expr, index+1)
